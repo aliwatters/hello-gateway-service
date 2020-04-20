@@ -7,6 +7,7 @@ export class HelloService {
 
   hello() {
     const externalHelloService = process.env.HELLO_SERVICE || 'http://localhost:3000/hello';
+    console.log('ATTEMPTING: proxy on to', externalHelloService);
     return this.httpService.get(externalHelloService).pipe(map(response => response.data));
   }
 }
