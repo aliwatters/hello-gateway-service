@@ -6,6 +6,7 @@ export class HelloService {
   constructor(private httpService: HttpService) {}
 
   hello() {
-    return this.httpService.get('http://localhost:3000/hello').pipe(map(response => response.data));
+    const externalHelloService = process.env.HELLO_SERVICE || 'http://localhost:3000/hello';
+    return this.httpService.get(externalHelloService).pipe(map(response => response.data));
   }
 }
